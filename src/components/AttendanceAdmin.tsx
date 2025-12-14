@@ -59,6 +59,11 @@ export default function AttendanceAdmin() {
   const pres = countPresent();
   const pend = total - pres;
 
+  async function loadPeople() {
+    const res = await fetch("/api/people", { cache: "no-store" });
+    return res.json();
+  }
+
   function toggleFilter(next: FilterMode) {
     const fm: FilterMode = filterMode === next ? "all" : next;
     setFilterMode(fm);

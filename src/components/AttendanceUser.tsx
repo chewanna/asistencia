@@ -13,6 +13,14 @@ function rowMatchesQuery(r: Person, query: string) {
   return hay.includes(norm(query));
 }
 
+async function setPresent(id: number, present: boolean) {
+  await fetch("/api/attendance", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, present }),
+  });
+}
+
 export default function AttendanceUser() {
   const [q, setQ] = useState("");
   const [toast, setToast] = useState("");
